@@ -1,0 +1,22 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1> <%= @article.title %> </h1>
+    <p class="lead"> <%= @article.body %> </p>
+  </div>
+  <div class="text-right mr-4">
+  <%= link_to "Edit", edit_article_path(@article), class:"btn btn-info btn-sm" %>
+  <%= link_to "Destroy", article_path(@article), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"btn btn-danger btn-sm" %>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <h2><%= link_to "Comments" %><%= @article.comments.count %></h2>
+  </div>
+</div>
+
+
+
+
+<h2>Add a comment:</h2>
+<%= render "comments/form", article: @article %>

@@ -1,0 +1,22 @@
+<table class="table table-striped table-bordered table-hover">
+  <h1>Articles</h1>
+  <br>
+  <thead class="table-dark text-center">
+    <tr>
+      <th>Article</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @articles.each do |article| %>
+    <tr>
+      <td><%= article.title %></td>
+      <td class="text-center"><%= link_to "show", article, class:"btn btn-info btn-sm" %></td>
+    </tr>
+    <% end %>
+  </tbody>
+  
+</table>
+<br>
+<%= link_to "New Article", new_article_path, class: "btn btn-primary" %>
+
