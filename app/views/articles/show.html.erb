@@ -11,12 +11,11 @@
 
 <div class="card">
   <div class="card-header">
-    <h2><%= link_to "Comments" %><%= @article.comments.count %></h2>
+    <h4><%= link_to "Comments: ", article_comments_path(@article)%><%= @article.comments.count %></h4>
   </div>
 </div>
 
-
-
+<br>
 
 <h2>Add a comment:</h2>
 <%= render "comments/form", article: @article %>

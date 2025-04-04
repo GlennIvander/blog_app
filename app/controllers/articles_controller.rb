@@ -6,6 +6,8 @@ class ArticlesController < ApplicationController
 
   def show; end
 
+  def edit; end
+
   def new
     @article = Article.new
   end
@@ -18,8 +20,6 @@ class ArticlesController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
-
-  def edit; end
 
   def update
     if @article.update(article_params)
@@ -36,7 +36,7 @@ class ArticlesController < ApplicationController
 
   private
   def article_params
-    params.require(:article).permit(:title, :body)
+    params.require(:article).permit(:title, :body, :status)
   end
 
   def set_id
