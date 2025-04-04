@@ -1,7 +1,6 @@
 class CommentsController < ApplicationController
-  before_action :set_id, only: %i[show edit update destroy]
+  before_action :set_id
   def index
-    @article = Article.find(params[:article_id])
     @comments = @article.comments
   end
 
@@ -16,23 +15,32 @@ class CommentsController < ApplicationController
   def update
     @comment = @article.comments.find(params[:id])
     if @comment.update(comment_params)
-      redirect_to @article, notice: "Yeey. Comment updated."
+      redirect_to article_comments_path(@article), notice: "Yeey. Comment updated."
     else
+      flash[:alert] = "Sad. Comment not updated. Must at least 10 characters to be legit"
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @article = Article.find(params[:article_id])
     @comment = @article.comments.find(params[:id])
-    @comment.destroy
-    redirect_to article_path(@article), status: :see_other
+    if @comment.destroy
+      redirect_to article_path(@article), status: :see_other
+      flash[:alert] = "Yeey. Comment deleted."
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def create
-    @article = Article.find(params[:article_id])
     @comment = @article.comments.create(comment_params)
-    redirect_to article_path(@article)
+
+    if @comment.persisted?
+      redirect_to article_path(@article), notice: "Yeey. Comment created.", status: :see_other
+    else
+      flash[:alert] = "Sad. Comment not created. Must at least 10 characters to be legit"
+      redirect_to article_path(@article)
+    end
   end
 
   private

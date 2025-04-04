@@ -7,9 +7,14 @@
     <blockquote class="blockquote mb-0">
       <p> <%= comment.body  %> </p>
       <p><footer class="blockquote-footer"> <%= comment.commenter  %> </footer></p>
-      <%= link_to "Edit", edit_article_comment_path(@article, comment), class:"btn btn-primary btn-sm" %>
-      <%= link_to "Destroy", article_comment_path(@article, comment), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"btn btn-danger btn-sm" %>
+      <div>
+        <%= link_to "Update", edit_article_comment_path(@article, comment), class:"btn btn-primary btn-sm" %>
+        <%= link_to "Delete", article_comment_path(@article, comment), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"btn btn-danger btn-sm" %>
+      </div>
+      <br><br>
       <% end %>
     </blockquote>
   </div>
 </div>
+<br><br>
+<%= link_to "Back", @article, class: "btn btn-secondary" %>
