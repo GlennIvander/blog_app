@@ -11,7 +11,7 @@
 
 <div class="card">
   <div class="card-header">
-    <h4><%= link_to "Comments: ", article_comments_path(@article)%><%= @article.comments.count %></h4>
+    <h4>Comments: <%= link_to @article.comments.count, article_comments_path(@article) %></h4>
   </div>
 </div>
 

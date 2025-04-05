@@ -1,2 +1,16 @@
-<h1>Comments#showwwwwwwweeerrr</h1>
-<p>Find me in app/views/comments/show.html.erb</p>
+<h1>Show Comment</h1>
+
+<%= form_with(model: [@article, @comment]) do |form| %>
+  <div class="field form-group">
+    <%= form.label :commenter %><br>
+    <%= form.text_field :commenter, class:"form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label :body %><br>
+    <%= form.text_area :body, class:"form-control" %><br>
+  </div>
+
+  <%= link_to "Back", article_comments_path(@article), class: "btn btn-secondary" %>
+
+<% end %>
