@@ -18,18 +18,6 @@
 <br>
 
 <h2>Add a comment:</h2>
-<%= form_with model: [ @article, @article.comments.build ] do |form| %>
-  <div class="field form-group">
-    <%= form.label :commenter %><br>
-    <%= form.text_field :commenter, class:"form-control" %>
-  </div>
-  <div class="field form-group">
-    <%= form.label :body %><br>
-    <%= form.text_area :body, class:"form-control" %>
-  </div>
-  <div class="actions">
-    <%= form.submit class:'btn btn-primary'%>
-  </div>
-<% end %>
+<%= render "comments/form", article: @article, comment: @comment %>
 <br>
 <%= link_to "Back", root_path , class: "btn btn-secondary" %>

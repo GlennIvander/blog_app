@@ -1,15 +1,19 @@
-<%= form_with(model: [@article, @comment]) do |form| %>
+<%= form_with model: [article, comment] do |form| %>
   <div class="field form-group">
     <%= form.label :commenter %><br>
     <%= form.text_field :commenter, class:"form-control" %>
+    <% comment.errors.full_messages_for(:commenter).each do |message| %>
+      <div class="text-danger"><%= message %></div>
+    <% end %>
   </div>
   <div class="field form-group">
     <%= form.label :body %><br>
     <%= form.text_area :body, class:"form-control" %>
+    <% comment.errors.full_messages_for(:body).each do |message| %>
+      <div class="text-danger"><%= message %></div>
+    <% end %>
   </div>
   <div class="actions">
     <%= form.submit class:'btn btn-primary'%>
   </div>
 <% end %>
-<br>
-<%= link_to "Back", article_comments_path(@article), class: "btn btn-secondary" %>

@@ -11,9 +11,9 @@ class CommentsController < ApplicationController
 
   def update
     if @comment.update(comment_params)
-      redirect_to article_comments_path(@article), notice: "Yeey. Sumakses ang update bes."
+      redirect_to article_comments_path(@article), notice: "Yeey. Update successful."
     else
-      flash[:alert] = "Sad. Not sakses ang update mo bes. Must at least 10 characters to be legit"
+      flash[:alert] = "Sad. Update unsuccessful."
       render :edit, status: :unprocessable_entity
     end
   end
@@ -21,7 +21,7 @@ class CommentsController < ApplicationController
   def destroy
     if @comment.destroy
       redirect_to article_path(@article), status: :see_other
-      flash[:alert] = "Yeey. Sumakses ang delete bes."
+      flash[:alert] = "Yeey. Delete successful."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -30,16 +30,16 @@ class CommentsController < ApplicationController
   def create
     @comment = @article.comments.new(comment_params)
     if @comment.save
-      redirect_to article_path(@article), notice: "Yeey. Sumakses ang create bes.", status: :see_other
+      redirect_to article_path(@article), notice: "Yeey. Create successful.", status: :see_other
     else
-      flash[:alert] = "Sad. Not sakses ang create mo bes. Must have a commenter and at least 10 characters to be legit"
+      flash[:alert] = "Sad. Create unsuccessful."
       redirect_to article_path(@article)
     end
   end
 
   private
   def comment_params
-    params.require(:comment).permit(:commenter, :body, :status)
+    params.require(:comment).permit(:commenter, :body)
   end
 
   def set_id

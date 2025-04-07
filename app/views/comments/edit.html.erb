@@ -1,3 +1,6 @@
 <h1>Edit Comment</h1>
 
-<%= render "form", comment: @comment %>
+<%= render "form", article: @article, comment: @comment %>
+
+<br>
+<%= link_to "Back", article_comments_path(@article), class: "btn btn-secondary" %>
